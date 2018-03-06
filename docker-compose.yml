@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mysql:
+    build: ./db_docker
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    healthcheck:
+      test: "exit 0"
+  simple-web-app:
+    build: .
+    image: begenome/simple-web-app:latest
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "3000:3000"

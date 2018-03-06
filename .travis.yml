@@ -1,0 +1,12 @@
+language: node_js
+
+sudo: enabled
+
+node_js:
+  - "8"
+
+services:
+- docker
+
+script:
+- docker-compose build

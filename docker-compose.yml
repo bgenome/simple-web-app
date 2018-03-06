@@ -2,6 +2,7 @@ version: '3'
 services:
   mysql:
     build: ./db_docker
+    image: begenome/mysql:latest
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     healthcheck:

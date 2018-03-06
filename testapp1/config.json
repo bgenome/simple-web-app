@@ -1,0 +1,1 @@
+{"name":"testapp1","mailFrom":"info@localhost","hostnames":"localhost,localhost","db":"testapp1","dbuser":"dbuser2","dbpassword":"dbpass2","dbhost":"localhost","smtp":"smtpmailer.localhost","version":"V0.1","defaultlanguage":"en","datapath":"/usr/local/data/testapp1","port":3001}

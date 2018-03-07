@@ -17,10 +17,11 @@ services:
       - mysql:mysql
   nginx:
     build: ./proxy_docker
+    image: begenome/nginx:latest
     depends_on:
-    - simple-web-app
+      - simple-web-app
     ports:
-    - "80:80"
+      - "80:80"
     links:
       - simple-web-app:web
   

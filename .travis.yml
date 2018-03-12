@@ -12,5 +12,5 @@ script:
 - docker-compose build
 
 after_success:
-- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-- docker-compose push $REPO
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- docker-compose push

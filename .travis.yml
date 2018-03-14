@@ -10,6 +10,7 @@ services:
 
 before_install:
 - curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine && sudo install /tmp/docker-machine /usr/local/bin/docker-machine
+- echo $KEY > /tmp/key && chmod 0600 /tmp/key
 
 script:
 - docker-compose build
@@ -17,9 +18,8 @@ script:
 after_success:
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 - docker-compose push
-- docker-machine create -d none -url=tcp://34.252.181.20:2376 aws-docker
-- docker-machine regenerate-certs aws-docker -f
+- docker-machine create -d generic --generic-ip-address=34.252.181.20 --generic-ssh-key /tmp/key --generic-ssh-user ubuntu aws-docker
 - docker-machine env aws-docker
-- eval $(docker-machine env docker-compose-test)
-- docker-compose down
+- eval $(docker-machine env aws-docker)
+- docker-compose pull
 - docker-compose up -d

@@ -18,6 +18,8 @@ after_success:
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 - docker-compose push
 - docker-machine create -d none -url=tcp://34.252.181.20:2376 aws-docker
+- docker-machine regenerate-certs aws-docker
 - docker-machine env aws-docker
+- eval $(docker-machine env docker-compose-test)
 - docker-compose down
 - docker-compose up -d

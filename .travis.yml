@@ -14,3 +14,7 @@ script:
 after_success:
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 - docker-compose push
+- docker-machine create -d none -url=tcp://34.252.181.20:2376 aws-docker
+- docker-machine env aws-docker
+- docker-compose down
+- docker-compose up -d

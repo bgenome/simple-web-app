@@ -1,20 +1,22 @@
-version: '2.1'
+version: '2'
 services:
   mysql:
     build: ./db_docker
     image: begenome/mysql:latest
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-    healthcheck:
-      test: "exit 0"
+    mem_limit: '262144000'
   simple-web-app:
     build: .
     image: begenome/simple-web-app:latest
     depends_on:
-      mysql:
-        condition: service_healthy
+      - "mysql"
     links:
       - mysql:mysql
+    ports:
+      - "3001:3001"
+    mem_limit: '209715200'
+    command: ["./wait-for-it.sh", "mysql:3306", "--", "node", "testapp1.js" ]
   nginx:
     build: ./proxy_docker
     image: begenome/nginx:latest
@@ -24,4 +26,4 @@ services:
       - "80:80"
     links:
       - simple-web-app:web
-  
+    mem_limit: '209715200'

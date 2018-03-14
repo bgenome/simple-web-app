@@ -83,7 +83,7 @@ cody.startWebApp(cody.server, cody.config, function() {
   console.log("Loaded " + sitename + " web app with config:");
   console.log(cody.config);
   var portNr = cody.config.port || 3001;
-  cody.server.listen(portNr);
+  cody.server.listen(portNr, "0.0.0.0");
   console.log("Listening on port " + portNr);
 
 

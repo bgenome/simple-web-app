@@ -8,17 +8,16 @@ node_js:
 services:
 - docker
 
-before_install:
-- curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine && sudo install /tmp/docker-machine /usr/local/bin/docker-machine
-- echo $KEY > /tmp/key && chmod 0600 /tmp/key
-
 script:
 - docker-compose build
 
 after_success:
+- pip install --user awscli
+- export PATH=$PATH:$HOME/.local/bin
+- aws s3 cp s3://guybelo-private/id_rsa && chmod 0600 ./id_rsa
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 - docker-compose push
-- docker-machine create -d generic --generic-ip-address=34.252.181.20 --generic-ssh-key /tmp/key --generic-ssh-user ubuntu aws-docker
+- docker-machine create -d generic --generic-ip-address=34.252.181.20 --generic-ssh-key ./id_rsa --generic-ssh-user ubuntu aws-docker
 - docker-machine env aws-docker
 - eval $(docker-machine env aws-docker)
 - docker-compose pull

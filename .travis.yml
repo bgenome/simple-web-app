@@ -17,7 +17,7 @@ script:
 after_success:
 - pip install --user awscli
 - export PATH=$PATH:$HOME/.local/bin
-- aws s3 cp s3://guybelo-private/id_rsa && chmod 0600 ./id_rsa
+- aws s3 cp s3://guybelo-private/id_rsa . && chmod 0600 ./id_rsa
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 - docker-compose push
 - docker-machine create -d generic --generic-ip-address=34.252.181.20 --generic-ssh-key ./id_rsa --generic-ssh-user ubuntu aws-docker

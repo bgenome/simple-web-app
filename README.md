@@ -51,6 +51,9 @@ git push origin <new_branch>
 6. On GitHub request Pull-Request to start review process
 
 And then there will be a build to check if your work didnt break the code.
+The final product can be found on this URL:
+http://ec2-34-245-215-61.eu-west-1.compute.amazonaws.com/en/
+
 
 This is my first ever experience with AWS services and Continuous deployment to a running environment.
 As you can see there is more work to do to make this process more robust and full blown CI/CD pipeline.

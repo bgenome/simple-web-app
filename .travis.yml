@@ -13,15 +13,22 @@ before_install:
 
 script:
 - docker-compose build
-
-after_success:
-- pip install --user awscli
-- export PATH=$PATH:$HOME/.local/bin
-- aws s3 cp s3://guybelo-private/id_rsa . && chmod 0600 ./id_rsa
-- docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-- docker-compose push
-- docker-machine create -d generic --generic-ip-address=34.245.215.61 --generic-ssh-key ./id_rsa --generic-ssh-user ubuntu aws-docker
-- docker-machine env aws-docker
-- eval $(docker-machine env aws-docker)
-- docker-compose pull
 - docker-compose up -d
+- ./test.sh
+- docker-compose down
+
+
+branches:
+  only:
+  - master
+  after_success:
+  - pip install --user awscli
+  - export PATH=$PATH:$HOME/.local/bin
+  - aws s3 cp s3://guybelo-private/id_rsa . && chmod 0600 ./id_rsa
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker-compose push
+  - docker-machine create -d generic --generic-ip-address=34.245.215.61 --generic-ssh-key ./id_rsa --generic-ssh-user ubuntu aws-docker
+  - docker-machine env aws-docker
+  - eval $(docker-machine env aws-docker)
+  - docker-compose pull
+  - docker-compose up -d

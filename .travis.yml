@@ -13,6 +13,9 @@ before_install:
 
 script:
 - docker-compose build
+- docker-compose up -d
+- ./test.sh
+- docker-compose down
 
 
 branches:

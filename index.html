@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Garumi — Know before you pay the shop</title>
+  <meta name="description" content="Early access for BRZ, GR86, G37, and Q60 owners. VIN clarity, symptom checks, and invoice sanity — before you spend." />
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --card: #141820;
+      --line: #243041;
+      --text: #e8eef7;
+      --muted: #9aa8bc;
+      --accent: #3dd6c6;
+      --accent-2: #6ea8ff;
+      --danger: #ff7a59;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, #1a2740 0%, transparent 55%), var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 28px 20px 64px; }
+    .badge {
+      display: inline-flex; gap: 8px; align-items: center;
+      border: 1px solid var(--line); background: rgba(61,214,198,.08);
+      color: var(--accent); border-radius: 999px; padding: 6px 12px; font-size: 13px;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.1; margin: 18px 0 12px; letter-spacing: -0.03em; }
+    .lead { color: var(--muted); font-size: 1.125rem; max-width: 40rem; }
+    .cars { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 28px; }
+    .cars span {
+      border: 1px solid var(--line); background: var(--card); border-radius: 10px;
+      padding: 8px 12px; font-size: 14px; color: var(--text);
+    }
+    .grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; }
+    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background: linear-gradient(180deg, #171c26, #12161e);
+      border: 1px solid var(--line); border-radius: 18px; padding: 22px;
+    }
+    .card h2 { margin: 0 0 10px; font-size: 1.15rem; }
+    .list { margin: 0; padding: 0; list-style: none; }
+    .list li { padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--muted); }
+    .list li:last-child { border-bottom: 0; }
+    .list strong { color: var(--text); display: block; }
+    label { display: block; font-size: 13px; color: var(--muted); margin: 12px 0 6px; }
+    input, select, textarea {
+      width: 100%; border: 1px solid var(--line); background: #0e1218; color: var(--text);
+      border-radius: 10px; padding: 12px 12px; font: inherit;
+    }
+    textarea { min-height: 96px; resize: vertical; }
+    button {
+      width: 100%; margin-top: 16px; border: 0; border-radius: 12px; padding: 14px 16px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #041018;
+      font-weight: 700; font-size: 1rem; cursor: pointer;
+    }
+    button:hover { filter: brightness(1.05); }
+    .price {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+      margin: 8px 0 4px; padding: 12px 14px; border-radius: 12px; background: rgba(61,214,198,.08);
+      border: 1px solid rgba(61,214,198,.25);
+    }
+    .price b { font-size: 1.4rem; }
+    .fine { color: var(--muted); font-size: 12px; margin-top: 14px; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+    @media (max-width: 800px) { .steps { grid-template-columns: 1fr; } }
+    .step { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: var(--card); }
+    .step .n { color: var(--accent); font-weight: 700; font-size: 13px; }
+    footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+    #thanks { display: none; }
+    #thanks:target { display: block; }
+    #thanks:target + #form-card { display: none; }
+    .thanks-box {
+      border: 1px solid rgba(61,214,198,.35); background: rgba(61,214,198,.08);
+      border-radius: 18px; padding: 28px; text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="badge">US early access · BRZ / GR86 · G37 / Q60</div>
+    <h1>Know what’s going on with your car before you pay the shop.</h1>
+    <p class="lead">Garumi is an automotive intelligence companion for enthusiasts. Get a clear read on symptoms, invoices, and parts fitment — starting with the cars we actually drive and wrench on.</p>
+    <div class="cars">
+      <span>Subaru BRZ</span>
+      <span>Toyota GR86</span>
+      <span>Infiniti G37</span>
+      <span>Infiniti Q60</span>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <h2>What you get in the pilot</h2>
+        <ul class="list">
+          <li><strong>VIN profile</strong> Specs and a practical checklist for your exact car.</li>
+          <li><strong>Symptom check</strong> Plain-English likely causes and what to do next.</li>
+          <li><strong>Invoice sanity check</strong> Spot overpriced labor/parts before you approve.</li>
+          <li><strong>Parts fitment note</strong> Avoid the wrong aftermarket order for BRZ/GR86 or G37/Q60.</li>
+        </ul>
+        <div class="price"><span>One full check</span><b>$29</b></div>
+        <p class="fine">Early access price while we learn from real owners in these communities. Not a substitute for a licensed shop.</p>
+      </section>
+
+      <section>
+        <div id="thanks">
+          <div class="thanks-box">
+            <h2>Got it — you’re on the list.</h2>
+            <p class="lead" style="margin:0 auto;">Check your email for a confirmation from Formsubmit if this is your first submit. We’ll follow up on WhatsApp/email with next steps.</p>
+          </div>
+        </div>
+        <div class="card" id="form-card">
+          <h2>Join the US pilot</h2>
+          <form action="https://formsubmit.co/guybelo@me.com" method="POST">
+            <input type="hidden" name="_subject" value="Garumi early access lead" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value="https://garumi.com/#thanks" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <label for="name">Name</label>
+            <input id="name" name="name" required />
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+
+            <label for="handle">Reddit / Discord handle (optional)</label>
+            <input id="handle" name="handle" placeholder="u/… or discord#…" />
+
+            <label for="car">Car</label>
+            <select id="car" name="car" required>
+              <option value="">Select…</option>
+              <option>Subaru BRZ</option>
+              <option>Toyota GR86</option>
+              <option>Infiniti G37</option>
+              <option>Infiniti Q60</option>
+              <option>Other</option>
+            </select>
+
+            <label for="year">Year</label>
+            <input id="year" name="year" placeholder="2014" />
+
+            <label for="vin">VIN (optional)</label>
+            <input id="vin" name="vin" />
+
+            <label for="need">What do you need now?</label>
+            <select id="need" name="need" required>
+              <option value="">Select…</option>
+              <option>Symptom diagnosis</option>
+              <option>Invoice check</option>
+              <option>Parts fitment</option>
+            </select>
+
+            <label for="problem">What’s going on?</label>
+            <textarea id="problem" name="problem" required placeholder="Noise on hard braking, shop quote attached later, etc."></textarea>
+
+            <button type="submit">Request my $29 check</button>
+            <p class="fine">Responses go to the founder inbox. We’ll only use your info for this pilot.</p>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <section class="steps">
+      <div class="step"><div class="n">01</div><strong>Tell us the car + problem</strong><div class="fine">BRZ/GR86 or G37/Q60 preferred for this pilot.</div></div>
+      <div class="step"><div class="n">02</div><strong>Get a clear write-up</strong><div class="fine">Likely causes, what to ask the shop, what not to buy yet.</div></div>
+      <div class="step"><div class="n">03</div><strong>Help shape Garumi</strong><div class="fine">Your feedback decides what we build next.</div></div>
+    </section>
+
+    <footer>
+      Garumi · US early access · Built for enthusiast communities first.
+    </footer>
+  </main>
+</body>
+</html>
